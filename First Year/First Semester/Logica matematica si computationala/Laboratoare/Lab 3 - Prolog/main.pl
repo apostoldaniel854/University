@@ -27,3 +27,19 @@ split(X, [H|T], [H|A], B) :- X > H, split(X, T, A, B).
 split(X, [H|T], A, [H|B]) :- X =< H, split(X, T, A, B).
 quicksort([],[]).
 quicksort([H|T],L) :-split(H,T,A,B), quicksort(A,M), quicksort(B,N), append(M,[H|N],L).
+
+%parcurgere arbori binari
+srd(vid,[]).
+srd(arb(R,T,U),L) :- srd(T,L1), srd(U,L2), append(L1,[R|L2],L).
+
+%inserare in arbore binar de cautare
+bt_ins(X, vid, arb(X, vid, vid)).
+bt_ins(X, arb(ROOT, LEFT, RIGHT), arb(ROOT, V, RIGHT)) :- X < ROOT, bt_ins(X, LEFT, V).
+bt_ins(X, arb(ROOT, LEFT, RIGHT), arb(ROOT, LEFT, V)) :- X >= ROOT, bt_ins(X, RIGHT, V).
+
+% lista -> abore binar de cautare
+bt_list([], vid).
+bt_list([H|T], V) :- bt_list(T, W), bt_ins(H, W, V).
+
+% sortarea unei liste folosind arbori binari de cautare
+bt_sort(L, X) :- bt_list(L, T),  srd(T, X).
