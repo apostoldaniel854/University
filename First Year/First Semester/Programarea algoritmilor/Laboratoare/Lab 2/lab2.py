@@ -79,6 +79,43 @@ def codify():
         encoded_string += lstch
     print(encoded_string)
 
+def offset_of_list():
+    shopping_list = input("lista de cumparaturi=")
+    val = 0
+    sum = 0
+    for ch in shopping_list:
+        if ch.isdigit():
+            val = val * 10 + int(ch)
+        else:
+            sum += val
+            val = 0
+    print(sum)
 
+def caesar_cipher(str, key):
+    encoded = ""
+    for ch in str:
+        if ch >= 'a' and ch <= 'z':
+            ch = chr(ord('a')+ (ord(ch) - ord('a') + key) % 26)
+        encoded += ch;
+    return encoded
 
-codify()
+def decode_caesar_cipher(str, key):
+    return caesar_cipher(str, 26 - key)
+
+def are_anagrams():
+    a = input("a=")
+    b = input("b=")
+    a = list(a);
+    a.sort()
+    b = list(b)
+    b.sort()
+    if a == b:
+        print("sunt anagrame")
+    else:
+        print("nu sunt anagrame")
+
+def pasareasca():
+    cuv = input("cuv=")
+    for ch in ['a', 'e', 'i', 'o', 'u']:
+        cuv = cuv.replace(ch, str("p" + ch))
+    print(cuv)
