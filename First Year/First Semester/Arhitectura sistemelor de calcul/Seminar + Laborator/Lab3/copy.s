@@ -12,10 +12,12 @@ main:
     mov n, %ecx
 
 et_loop:
-    mov %ecx, %edx
-    dec %edx
-    mov (%esi, %edx, 1), %al 
-    mov %al, (%edi, %edx, 1) 
+    //mov %ecx, %edx
+    //dec %edx
+    //mov (%esi, %edx, 1), %al 
+    //mov %al, (%edi, %edx, 1) 
+    mov -1(%esi, %ecx, 1), %al
+    mov %al, -1(%edi, %ecx, 1)
     loop et_loop
 
 mov $4, %eax
