@@ -33,3 +33,12 @@ bsau(1, 1, 1).
 bsau(1, 0, 1).
 bsau(0, 1, 1).
 bsau(0, 0, 0).
+
+eval(X, E, A) :- atom(X), val(X, E, A).
+eval(imp(X, Y), E, A) :- eval(X, E, A1), eval(Y, E, A2),
+    bimp(A1, A2, A).
+eval(non(X), E, A) :- eval(X, E, A1), bnon(A1, A).
+eval(sau(X, Y), E, A) :- eval(X, E, A1), eval(Y, E, A2), bsau(A1, A2, A).
+eval(si(X, Y), E, A) :- eval(X, E, A1), eval(Y, E, A2), bsi(A1, A2, A).
+evals(X, [E], [A]) :- eval(X, E, A).
+evals(X, [HE|TE], [HA|TA]) :- evals(X, TE, TA), eval(X, HE, HA).
