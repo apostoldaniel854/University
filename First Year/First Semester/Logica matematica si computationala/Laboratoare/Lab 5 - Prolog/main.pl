@@ -16,3 +16,5 @@ vars(si(A, B), L) :- vars(A, L1), vars(B, L2), union(L1, L2, L).
 vars(sau(A, B), L) :- vars(A, L1), vars(B, L2), union(L1, L2, L).
 vars(sau(A, B), L) :- vars(A, L1), vars(B, L2), union(L1, L2, L).
 vars(imp(A, B), L) :- vars(A, L1), vars(B, L2), union(L1, L2, L).
+
+val(V, E, A) :- member((V, A), E).
